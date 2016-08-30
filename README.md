@@ -8,6 +8,7 @@ It is very easy to use,and all the atrribute can be defined by yourself ,so as t
 You dont need to write void Start() or void Awake(),just add a attribute for the function,all the functions 
 can execute in the same level.
 
+Here is my blog you can check it : http://blog.csdn.net/cartzhang/article/details/52372611
 
 Any question,pls let me know.
 
