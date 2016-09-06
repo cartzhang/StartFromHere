@@ -13,3 +13,8 @@ Here is my blog you can check it : http://blog.csdn.net/cartzhang/article/detail
 Any question,pls let me know.
 
 That is all ,thank you!
+-------------------------------------------------------------
+2016-09-06  update
+1. All the Attribute can be inherited by the same Attribute SFHCall.
+2. Now u can decide all the scripts's execution order totallly.
+3. You can define Attribute by yourself.
