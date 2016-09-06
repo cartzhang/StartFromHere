@@ -18,19 +18,19 @@ public class Test2 : MonoBehaviour
     {
 
     }
-    [SFHCall]
+    [SFHStartCall(20)]
     public virtual void IscanBeCalled()
     {
         Debug.Log(classname + "SFHCall can be called here");
     }
 
-    [SFHCall]
+    [SFHStartCall(19)]
     private void Test()
     {
         Debug.Log(classname + "Test function");
     }
 
-    [SFHCall]
+    [SFHStartCall(18)]
     public void mutsssstd()
     {
         Debug.Log(classname + "mutsssstd function");

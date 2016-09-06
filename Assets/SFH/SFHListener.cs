@@ -20,24 +20,18 @@ class SFHListener
     private  static void InitialStart()
     {
         MonoBehaviour[] testMono = GetScriptAssetsOfType<MonoBehaviour>();
-        AttributeUtils.GetAllDestByProperties<SFHCall>(testMono);
+        AttributeUtils.GetAllDestByProperties<SFHStartCall>(testMono);
 
-        int AttributeFunctionCount = AttributeUtils.monoRPCMethodsCache.Count;
-        if (AttributeFunctionCount < 0)
+        int aCount = AttributeUtils.myFuctionList.Count;
+        for (int i = 0; i < aCount; i++)
         {
-            return;
-        }
-
-        foreach (var item in AttributeUtils.monoRPCMethodsCache)
-        {
-            MonoBehaviour monob = (MonoBehaviour)item.Key;
-            for (int iMethod = 0; iMethod < item.Value.Count; iMethod++)
+            AtrribteFlagFunction item = (AtrribteFlagFunction)AttributeUtils.myFuctionList.GetByIndex(i);
+            Debug.Log("order is "  + AttributeUtils.myFuctionList.GetKey(i));            
+            MonoBehaviour monob = (MonoBehaviour)item.monob;
+            object result = item.methodInfo.Invoke((object)monob, new object[] { });
+            if (item.methodInfo.ReturnType == typeof(IEnumerator))
             {
-                object result = item.Value[iMethod].Invoke((object)monob, new object[] { });
-                if (item.Value[iMethod].ReturnType == typeof(IEnumerator))
-                {
-                    monob.StartCoroutine((IEnumerator)result);
-                }
+                monob.StartCoroutine((IEnumerator)result);
             }
         }
     }
