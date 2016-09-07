@@ -20,3 +20,13 @@ That is all ,thank you!
 1. All the Attribute can be inherited by the same Attribute SFHCall.
 2. Now u can decide all the scripts's execution order totallly.
 3. You can define Attribute by yourself.
+
+2016-09-07
+update
+
+Now, add a list in same level has same number under the same attribute.
+So ,there will be no error or collision if you has same number under same attribute.
+And also,they all be excuted in same level ,but each of them can not get the execution time,because they are random.
+
+Hope you enjoy it. have fun.
+
