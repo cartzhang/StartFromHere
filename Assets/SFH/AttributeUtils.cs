@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Reflection;
 
-public class AtrribteFlagFunction
+public class AtrributeFlagFunction
 {
     public MonoBehaviour monob;
     public MethodInfo methodInfo;
@@ -29,7 +29,7 @@ public class AttributeUtils
         var fields2 = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
         foreach (var field in fields2)
         {
-            AtrribteFlagFunction aff = new AtrribteFlagFunction();
+            AtrributeFlagFunction aff = new AtrributeFlagFunction();
             var objs = field.GetCustomAttributes(typeof(T), false);
             if (objs.Length > 0)
             {
@@ -39,11 +39,16 @@ public class AttributeUtils
                 int value = attr.GetLevel();
                 if (!myFuctionList.ContainsKey(value))
                 {
-                    myFuctionList.Add(value, aff);
+                    {
+                        List<AtrributeFlagFunction> AttributeList = new List<AtrributeFlagFunction>();
+                        AttributeList.Add(aff);
+                        myFuctionList.Add(value, AttributeList);
+                    }
                 }
                 else
                 {
-                    //Debug.LogError("value is the same "  + value);
+                    List<AtrributeFlagFunction> mlist = (List<AtrributeFlagFunction>)myFuctionList[value];
+                    mlist.Add(aff);
                 }
                 //Debug.Log(field.GetMethodBody().ToString() + "my levle is  " + value);
             }

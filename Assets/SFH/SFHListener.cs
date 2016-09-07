@@ -20,18 +20,20 @@ class SFHListener
     private  static void InitialStart()
     {
         MonoBehaviour[] testMono = GetScriptAssetsOfType<MonoBehaviour>();
-        AttributeUtils.GetAllDestByProperties<SFHStartCall>(testMono);
-
-        int aCount = AttributeUtils.myFuctionList.Count;
-        for (int i = 0; i < aCount; i++)
+        AttributeUtils.GetAllDestByProperties<SFHStartCall>(testMono);        
+        for (int i = 0; i < AttributeUtils.myFuctionList.Count; i++)
         {
-            AtrribteFlagFunction item = (AtrribteFlagFunction)AttributeUtils.myFuctionList.GetByIndex(i);
-            Debug.Log("order is "  + AttributeUtils.myFuctionList.GetKey(i));            
-            MonoBehaviour monob = (MonoBehaviour)item.monob;
-            object result = item.methodInfo.Invoke((object)monob, new object[] { });
-            if (item.methodInfo.ReturnType == typeof(IEnumerator))
+            List<AtrributeFlagFunction> mlist = (List<AtrributeFlagFunction>)AttributeUtils.myFuctionList.GetByIndex(i);
+            for (int j = 0; j < mlist.Count; j++)
             {
-                monob.StartCoroutine((IEnumerator)result);
+                AtrributeFlagFunction item = (AtrributeFlagFunction)mlist[j];
+                Debug.Log("order is " + AttributeUtils.myFuctionList.GetKey(i));
+                MonoBehaviour monob = (MonoBehaviour)item.monob;
+                object result = item.methodInfo.Invoke((object)monob, new object[] { });
+                if (item.methodInfo.ReturnType == typeof(IEnumerator))
+                {
+                    monob.StartCoroutine((IEnumerator)result);
+                }
             }
         }
     }
